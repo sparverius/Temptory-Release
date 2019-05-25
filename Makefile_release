@@ -63,8 +63,8 @@ all:: cleanup_rel_dir
 
 gmp:: C3NSTRINTKND:=gmpknd
 gmp:: INTKIND:=gmp
-# gmp:: all
-int:: tarzvcf_release
+gmp:: all
+gmp:: tarzvcf_release
 
 ######
 
