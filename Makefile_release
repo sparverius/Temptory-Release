@@ -1,0 +1,145 @@
+######
+#
+# For releasing ATS-Temptory
+#
+######
+
+CAT=cat
+CPF=cp -f
+CPRF=cp -rf
+RMF=rm -f
+RMRF=rm -rf
+MAKE=make
+TARZVCF=tar -zvcf
+MKDIR=mkdir
+CLONE=git clone
+CHKOUT=git checkout -b
+
+######
+#
+# Bootstrapping:
+#
+# [gmpknd] for CBOOTgmp
+# [intknd] for CBOOTint
+#
+# C3NSTRINTKND=gmpknd
+# C3NSTRINTKND=intknd
+#
+######
+#
+C3NSTRINTKND=
+#
+######
+
+INTKIND=
+
+######
+#
+# HX: no [gmp] 
+ifeq ($(C3NSTRINTKND),intknd)
+INTKIND=int
+endif
+#
+# HX: [gmp] needed
+ifeq ($(C3NSTRINTKND),gmpknd)
+INTKIND=gmp
+endif
+#
+######
+
+all::
+all:: export_rel_home
+all:: clonerepository 
+all:: checkoutrelease
+all:: bootstrap_build
+all:: compilecompiler
+all:: cp_filestocboot
+all:: compile_clibats
+all:: generate_config
+all:: cleanup_rel_dir
+# all:: tarzvcf_release
+
+######
+
+gmp:: C3NSTRINTKND:=gmpknd
+gmp:: INTKIND:=gmp
+# gmp:: all
+int:: tarzvcf_release
+
+######
+
+int:: C3NSTRINTKND=intknd
+int:: INTKIND=int
+int:: all
+int:: tarzvcf_release
+
+
+######
+
+ATSDIST=ATS-Temptory
+
+ATS_DIST_KIND=$(ATSDIST)-$(C3NSTRINTKND)
+
+RELEASE_VERSION=0.0.0
+
+######
+
+REPO=https://github.com/githwxi/ATS-Temptory.git
+
+RELBRANCH=tags/v$(RELEASE_VERSION)
+
+######
+
+BUILD_DIR=$(ATS_DIST_KIND)-$(RELEASE_VERSION)
+
+######
+
+RELHOME=${PWD}
+
+TEMPRELHOME=$(RELHOME)/$(BUILD_DIR)
+
+export TEMPRELHOME
+
+######
+
+MKBDIR=$(MAKE) -C $(BUILD_DIR)
+
+######
+
+export_rel_home:: ; @echo "export temptory release home"
+export_rel_home:: ; export TEMPRELHOME=${PWD}
+
+clonerepository:: ; @echo "git clone $(REPO) $(BUILD_DIR)"
+clonerepository:: ; $(CLONE) $(REPO) $(BUILD_DIR)
+
+checkoutrelease:: ; @echo "$(CHKOUT) $(RELBRANCH)"
+checkoutrelease:: ; (cd $(BUILD_DIR) && $(CHKOUT) $(RELBRANCH))
+
+bootstrap_build:: ; @echo "Bootstraping build"
+bootstrap_build:: ; $(CPRF) build_root/* $(BUILD_DIR)
+
+compilecompiler:: ; @echo "Compiling compiler"
+compilecompiler:: ; $(MKBDIR)/srcgen -f Makefile C3NSTRINTKND=$(C3NSTRINTKND) all
+
+cp_filestocboot:: ; @echo "Copying compiler files to CBOOT"
+cp_filestocboot:: ; $(MKBDIR)/srcgen -f Makefile CBOOT$(INTKIND)
+
+compile_clibats:: ; $(MKBDIR)/srcgen/CBOOT/libc -f Makefile
+compile_clibats:: ; $(MKBDIR)/srcgen/CBOOT/libats -f Makefile
+compile_clibats:: ; $(MKBDIR)/srcgen/CBOOT/prelude -f Makefile
+
+generate_config:: ; @echo "Generating configure file"
+generate_config:: ; (cd $(BUILD_DIR) && sh ./autogen.sh) 
+
+cleanup_rel_dir:: ; @echo "Cleaning up realease directory"
+cleanup_rel_dir:: ; $(MKBDIR) clean
+
+######
+
+# provided that the above has been completed...
+
+tarzvcf_release:: ; $(TARZVCF) $(BUILD_DIR).tgz $(BUILD_DIR)/.
+
+######
+
+###### end of [Makefile] ######
