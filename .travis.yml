@@ -1,0 +1,49 @@
+os:
+  - linux
+
+
+language: c
+
+
+addons:
+  apt:
+    packages:
+      - libgc-dev
+      - libgmp-dev
+
+before_install:
+  - date
+  - cd ${HOME}
+  # Setting-up
+  - export GCC=gcc
+  - export CLANG=clang
+  - export ATSHOME=${HOME}/ATS1
+  - export ATSHOMERELOC=ATS-0.2.12
+  - export PATSHOME=${HOME}/ATS2
+  - export PATH=${PATH}:${PATSHOME}/bin
+  - export TEMPTORYBUILD=${TRAVIS_BUILD_DIR}
+
+install:
+  - ${TRAVIS_BUILD_DIR}/travis-ci/install-ats1.sh 0.2.12
+  - ${TRAVIS_BUILD_DIR}/travis-ci/install-ats2.sh 0.3.12
+
+script:
+  # Build ATS1
+  - cd ${ATSHOME}
+  # ./configure&&make CC=${GCC} all
+  - ./configure&&make CC=${GCC} all_ngc
+  # Build ATS2
+  - cd ${PATSHOME}
+  - ./configure&&make CC=${GCC} all
+
+  - cd $TEMPTORYBUILD
+  - make
+
+deploy:
+  provider: releases
+  api_key:
+    secure: GopfctJBPlAb/3NyeenD2SgzYbB+ctmjNSo5EUJP5Ul9C408npniCdwbQevX7q1VH1w0ITaQ7RuO8trXHEqXdXmxQpZBJ9PtKoEXkmT6bMCf33Ro1J7WbO/91BLf+ZyqtFhm7piqUHv97suTGpi5Y6tNrvEPReMeCfICUHLtM/5FXudfms2avkckGpDmS2p8Z0mI21DEgNaRR2i9HJeKS4uxqv7YajbFeMvwOcP57qIMWcxxz+53cv5hXj0g7nTggL4TkLjUPcf/pDzvBBT5ArdioQlrD4QvD1UYZUJHF8l2X3qKivD+W62+PLORhAkqZ5dTXWyrrg8qJX/k98b7/I6jdJKOYfZnbNQL5AFfaYfBYeS6UZpj6nkRuKkRPgAyRqPC2jPO6WiZwdcXDmaLEp8BeFO1RzDqfLrDxAekUFjTaHhnH6SNfWPeBlb1h+2F2okVf7kJx7/tgr3p3+KmiN7yg4gwaaZdHoMKtHVPJVqgbkKLWjkkqGGElclbAUJ4uPpfeUtTnvufqa3h4YFq482nJt+WG/H4qoHu6LgGleV6bpwOM+9edpwzX74hq8ZaITD6RWSdX5+NeK/MWIFPh0DJr6tW+rx3F8EHhFj4q6nHxkR0/duZMcWNXaVN59+nflilXb0L7a/KiZDSOwQlMAQoPJSBeCl91sw9Q130ljg=
+  file_glob: true
+  file:
+    - ATS-Temptory-*.tgz
+  skip_cleanup: ture
