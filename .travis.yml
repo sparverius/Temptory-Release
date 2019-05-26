@@ -1,49 +1,42 @@
 os:
-  - linux
-
-
+- linux
 language: c
-
-
 addons:
   apt:
     packages:
-      - libgc-dev
-      - libgmp-dev
-
+    - libgc-dev
+    - libgmp-dev
 before_install:
-  - date
-  - cd ${HOME}
-  # Setting-up
-  - export GCC=gcc
-  - export CLANG=clang
-  - export ATSHOME=${HOME}/ATS1
-  - export ATSHOMERELOC=ATS-0.2.12
-  - export PATSHOME=${HOME}/ATS2
-  - export PATH=${PATH}:${PATSHOME}/bin
-  - export TEMPTORYBUILD=${TRAVIS_BUILD_DIR}
-
+- date
+- cd ${HOME}
+- export GCC=gcc
+- export CLANG=clang
+- export ATSHOME=${HOME}/ATS1
+- export ATSHOMERELOC=ATS-0.2.12
+- export PATSHOME=${HOME}/ATS2
+- export PATH=${PATH}:${PATSHOME}/bin
+- export TEMPTORYBUILD=${TRAVIS_BUILD_DIR}
 install:
-  - ${TRAVIS_BUILD_DIR}/travis-ci/install-ats1.sh 0.2.12
-  - ${TRAVIS_BUILD_DIR}/travis-ci/install-ats2.sh 0.3.12
-
+- "${TRAVIS_BUILD_DIR}/travis-ci/install-ats1.sh 0.2.12"
+- "${TRAVIS_BUILD_DIR}/travis-ci/install-ats2.sh 0.3.12"
 script:
-  # Build ATS1
-  - cd ${ATSHOME}
-  # ./configure&&make CC=${GCC} all
-  - ./configure&&make CC=${GCC} all_ngc
-  # Build ATS2
-  - cd ${PATSHOME}
-  - ./configure&&make CC=${GCC} all
-
-  - cd $TEMPTORYBUILD
-  - make
-
+- cd ${ATSHOME}
+- "./configure&&make CC=${GCC} all_ngc"
+- cd ${PATSHOME}
+- "./configure&&make CC=${GCC} all"
+- cd $TEMPTORYBUILD
+- make
+before_deploy:
+  - git tag v0.0.0
 deploy:
   provider: releases
   api_key:
-    secure: GopfctJBPlAb/3NyeenD2SgzYbB+ctmjNSo5EUJP5Ul9C408npniCdwbQevX7q1VH1w0ITaQ7RuO8trXHEqXdXmxQpZBJ9PtKoEXkmT6bMCf33Ro1J7WbO/91BLf+ZyqtFhm7piqUHv97suTGpi5Y6tNrvEPReMeCfICUHLtM/5FXudfms2avkckGpDmS2p8Z0mI21DEgNaRR2i9HJeKS4uxqv7YajbFeMvwOcP57qIMWcxxz+53cv5hXj0g7nTggL4TkLjUPcf/pDzvBBT5ArdioQlrD4QvD1UYZUJHF8l2X3qKivD+W62+PLORhAkqZ5dTXWyrrg8qJX/k98b7/I6jdJKOYfZnbNQL5AFfaYfBYeS6UZpj6nkRuKkRPgAyRqPC2jPO6WiZwdcXDmaLEp8BeFO1RzDqfLrDxAekUFjTaHhnH6SNfWPeBlb1h+2F2okVf7kJx7/tgr3p3+KmiN7yg4gwaaZdHoMKtHVPJVqgbkKLWjkkqGGElclbAUJ4uPpfeUtTnvufqa3h4YFq482nJt+WG/H4qoHu6LgGleV6bpwOM+9edpwzX74hq8ZaITD6RWSdX5+NeK/MWIFPh0DJr6tW+rx3F8EHhFj4q6nHxkR0/duZMcWNXaVN59+nflilXb0L7a/KiZDSOwQlMAQoPJSBeCl91sw9Q130ljg=
+    secure: PCgyN+uLU9n3hII/qFl8xsDt7JrNXzN5IIsNNUVCnuIqxROlFYxAxzSlbvLp+JdN4keCmffkIis6L0kgjvEw8DoxhaoleNfvoT1Esv1mOJdbmoYpl6R5vSM0XNuoaTP5SC+9TfS5DDH8xixD72vRwOGh83TlO05Ks7jd/U+5Wze5b1q4Htp3KDanAnmrUVbCUhz0Jx7W3oLC5qQSzH5xqJMvkNYituPpYEIrwHucOoF3BZDJksWZ3RvKYFF+n6sXmhfqHHQx0XmWLkV/S9J8YOS4mUY2eyBle6fccId6RFaoKLiW9GM7KV13xzjwx0a4fyOHZs/0PVS7xXSWD70kq6bk4M7HAgQ/fa3vTqr+YgxGo2itPWIDShofkY5IIlXGyZzt9eM9AcMsh0M1jepgjbl1MpKdXICVF0SIRQnIfi5wb7IB/rqEqfelvu/qoPRJZyAYO+do/DN7ObbiVUcTSddQZ4Jg0GmxHV52F7ea8ZFBQZvoJ8J7eXWKCN7Lt/Vj4gaoddPLJCTAYGKNKA0BnZj0hj6CAQYRVybL3RIo6Q4lbNRzoNknVi/q3yj0pj+Hq30ZoLvgnQwJczt8AlHg7DAoBw1HAN9JAx/B6PUv0cyoNRnzzncHWMLANNMyVPsbz0BKfHAXg+mVsCOP5LLDJCaBpH8FZZLLsXz/oYQSmyU=
   file_glob: true
-  file:
-    - ATS-Temptory-*.tgz
-  skip_cleanup: ture
+  prerelease: true
+  name: ATS-Temptory-0.0.0
+  skip_cleanup: true
+  file: ATS-Temptory-*.tgz
+  on:
+    repo: sparverius/Temptory-Release
+    tags: true
