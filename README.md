@@ -1,5 +1,5 @@
 # Temptory-Release
 
 
-#### To Test
-`make gmp`
+#### To Test:
+`make`
