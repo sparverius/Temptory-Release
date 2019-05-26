@@ -1,0 +1,18 @@
+######
+#
+# Entry point for building the release
+#
+######
+
+MAKE=make
+MAKEFILE=Makefile_release
+
+all:: int
+all:: gmp
+
+int:: ; $(MAKE) -f $(MAKEFILE) C3NSTRINTKND=intknd all
+gmp:: ; $(MAKE) -f $(MAKEFILE) C3NSTRINTKND=gmpknd all
+
+RMRF=rm -rf
+
+cleanall:: ; $(RMRF) ATS-Temptory-*knd*

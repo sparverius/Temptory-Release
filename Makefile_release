@@ -2,6 +2,8 @@
 #
 # For releasing ATS-Temptory
 #
+# Called by Makefile_build
+#
 ######
 
 CAT=cat
@@ -35,7 +37,7 @@ INTKIND=
 
 ######
 #
-# HX: no [gmp] 
+# HX: no [gmp]
 ifeq ($(C3NSTRINTKND),intknd)
 INTKIND=int
 endif
@@ -49,7 +51,7 @@ endif
 
 all::
 all:: export_rel_home
-all:: clonerepository 
+all:: clonerepository
 all:: checkoutrelease
 all:: bootstrap_build
 all:: compilecompiler
@@ -57,23 +59,22 @@ all:: cp_filestocboot
 all:: compile_clibats
 all:: generate_config
 all:: cleanup_rel_dir
-# all:: tarzvcf_release
+all:: tarzvcf_release
 
 ######
-
-gmp:: C3NSTRINTKND:=gmpknd
-gmp:: INTKIND:=gmp
-gmp:: all
-gmp:: tarzvcf_release
-
+#
+# gmp:: C3NSTRINTKND=gmpknd
+# gmp:: INTKIND=gmp
+# gmp:: all
+# gmp:: tarzvcf_release
+#
 ######
-
-int:: C3NSTRINTKND=intknd
-int:: INTKIND=int
-int:: all
-int:: tarzvcf_release
-
-
+#
+# int:: C3NSTRINTKND=intknd
+# int:: INTKIND=int
+# int:: all
+# int:: tarzvcf_release
+#
 ######
 
 ATSDIST=ATS-Temptory
@@ -129,14 +130,12 @@ compile_clibats:: ; $(MKBDIR)/srcgen/CBOOT/libats -f Makefile
 compile_clibats:: ; $(MKBDIR)/srcgen/CBOOT/prelude -f Makefile
 
 generate_config:: ; @echo "Generating configure file"
-generate_config:: ; (cd $(BUILD_DIR) && sh ./autogen.sh) 
+generate_config:: ; (cd $(BUILD_DIR) && sh ./autogen.sh && $(RMRF) autom4te.cache)
 
 cleanup_rel_dir:: ; @echo "Cleaning up realease directory"
 cleanup_rel_dir:: ; $(MKBDIR) clean
 
 ######
-
-# provided that the above has been completed...
 
 tarzvcf_release:: ; $(TARZVCF) $(BUILD_DIR).tgz $(BUILD_DIR)/.
 
