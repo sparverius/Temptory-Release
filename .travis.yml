@@ -26,8 +26,6 @@ script:
 - "./configure&&make CC=${GCC} all"
 - cd $TEMPTORYBUILD
 - make
-before_deploy:
-  - git tag v0.0.0
 deploy:
   provider: releases
   api_key:
@@ -39,3 +37,4 @@ deploy:
   file: ATS-Temptory-*.tgz
   on:
     repo: sparverius/Temptory-Release
+    tags: true
