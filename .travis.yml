@@ -39,4 +39,3 @@ deploy:
   file: ATS-Temptory-*.tgz
   on:
     repo: sparverius/Temptory-Release
-    tags: true
