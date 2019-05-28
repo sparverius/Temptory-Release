@@ -1,0 +1,42 @@
+
+#
+# A simple Makefile
+# for packing ATS-includes
+#
+
+######
+
+include share.mk
+
+######
+
+all:: make_dirs 
+all:: copyfiles
+all:: tarzvcf
+
+######
+
+SRC=$(ATSDIST)-gmpknd-$(RELEASE_VERSION)
+DST=$(ATSDIST)-include-$(RELEASE_VERSION)
+
+######
+
+make_dirs:: ; $(MKDIRP) $(DST)/ccomp/runtime/
+make_dirs:: ; $(MKDIRP) $(DST)/libats/CATS/
+make_dirs:: ; $(MKDIRP) $(DST)/libats/libc/CATS/
+make_dirs:: ; $(MKDIRP) $(DST)/libats/temp/CATS/
+
+######
+
+copyfiles:: ; $(CPFP) $(SRC)/ccomp/runtime/*.h $(DST)/ccomp/runtime/
+copyfiles:: ; $(CPFP) $(SRC)/ccomp/runtime/*.c $(DST)/ccomp/runtime/
+copyfiles:: ; $(CPFP) $(SRC)/libats/CATS/*.cats $(DST)/libats/CATS/
+copyfiles:: ; $(CPFP) $(SRC)/libats/libc/CATS/*.cats $(DST)/libats/libc/CATS/
+copyfiles:: ; $(CPFP) $(SRC)/libats/temp/CATS/*.cats $(DST)/libats/temp/CATS/
+
+######
+
+tarzvcf:: ; $(TARZVCF) $(DST).tgz $(DST)
+
+######
+

@@ -4,15 +4,31 @@
 #
 ######
 
-MAKE=make
-MAKEFILE=Makefile_release
+include share.mk
 
-all:: int
-all:: gmp
+######
 
-int:: ; $(MAKE) -f $(MAKEFILE) C3NSTRINTKND=intknd all
-gmp:: ; $(MAKE) -f $(MAKEFILE) C3NSTRINTKND=gmpknd all
+MAKEREL=Makefile_release
+MAKEINC=Makefile_include
 
-RMRF=rm -rf
+######
 
-cleanall:: ; $(RMRF) ATS-Temptory-*knd*
+all:: intkind
+all:: gmpkind
+all:: include
+
+######
+
+intkind:: ; $(MAKE) -f $(MAKEREL) C3NSTRINTKND=intknd all
+gmpkind:: ; $(MAKE) -f $(MAKEREL) C3NSTRINTKND=gmpknd all
+
+######
+
+include:: ; $(MAKE) -f $(MAKEINC) all
+
+######
+
+cleanall::; $(RMF) *~
+cleanall::; $(RMRF) ATS-Temptory-*
+
+######

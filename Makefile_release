@@ -6,16 +6,7 @@
 #
 ######
 
-CAT=cat
-CPF=cp -f
-CPRF=cp -rf
-RMF=rm -f
-RMRF=rm -rf
-MAKE=make
-TARZVCF=tar -zvcf
-MKDIR=mkdir
-CLONE=git clone
-CHKOUT=git checkout -b
+include share.mk
 
 ######
 #
@@ -28,9 +19,9 @@ CHKOUT=git checkout -b
 # C3NSTRINTKND=intknd
 #
 ######
-#
+
 C3NSTRINTKND=
-#
+
 ######
 
 INTKIND=
@@ -77,21 +68,7 @@ all:: tarzvcf_release
 #
 ######
 
-ATSDIST=ATS-Temptory
-
-ATS_DIST_KIND=$(ATSDIST)-$(C3NSTRINTKND)
-
-RELEASE_VERSION=0.0.0
-
-######
-
-REPO=https://github.com/githwxi/ATS-Temptory.git
-
-RELBRANCH=tags/v$(RELEASE_VERSION)
-
-######
-
-BUILD_DIR=$(ATS_DIST_KIND)-$(RELEASE_VERSION)
+BUILD_DIR=$(ATSDIST)-$(C3NSTRINTKND)-$(RELEASE_VERSION)
 
 ######
 
