@@ -37,3 +37,4 @@ deploy:
   skip_cleanup: true
   on:
     repo: sparverius/Temptory-Release
+    tags: true
