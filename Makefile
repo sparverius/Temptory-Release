@@ -16,6 +16,8 @@ MAKEINC=Makefile_include
 all:: intkind
 all:: gmpkind
 all:: include
+all:: test
+all:: clean
 
 ######
 
@@ -25,6 +27,19 @@ gmpkind:: ; $(MAKE) -f $(MAKEREL) C3NSTRINTKND=gmpknd all
 ######
 
 include:: ; $(MAKE) -f $(MAKEINC) all
+
+######
+
+test:: ; (cd $(DIR_INT) && ./configure)
+test:: ; (cd $(DIR_GMP) && ./configure)
+
+test:: ; time $(MAKE) -C $(DIR_INT) all
+test:: ; time $(MAKE) -C $(DIR_GMP) all
+test:: ; time $(MAKE) -C $(DIR_CLU) all
+
+######
+
+clean:: ; $(RMRF) $(DIR_INT) $(DIR_GMP) $(DIR_CLU)
 
 ######
 
