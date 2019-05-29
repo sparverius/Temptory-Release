@@ -27,13 +27,12 @@ TMPACCDIR=tmpacc_build
 ######
 
 make_tempacc::; $(RMRF) $(DST)
-make_tempacc::; $(MKDIR) $(DST)
 
 make_tempacc::; $(CPRFP) $(SRC)/utils/tempacc/ $(TMPACCDIR)
 make_tempacc::; $(MAKE) -C $(TMPACCDIR)
 make_tempacc::; $(MAKE) -C $(TMPACCDIR) build
 
-make_tempacc::; $(CPRFP) $(BASE)/* $(DST)
+make_tempacc::; $(CPRFP) $(BASE) $(DST)
 make_tempacc::; $(CPRFP) $(TMPACCDIR)/BUILD/*.c $(DST)/utils/tempacc/
 
 # for future reference
@@ -41,7 +40,6 @@ make_tempacc::; $(CPRFP) $(TMPACCDIR)/DATS/ $(DST)/utils/tempacc/
 make_tempacc::; $(CPRFP) $(TMPACCDIR)/SATS/ $(DST)/utils/tempacc/
 
 make_tempacc::; $(RMRF) $(TMPACCDIR)
-
 
 ######
 
