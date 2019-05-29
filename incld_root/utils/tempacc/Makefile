@@ -30,8 +30,7 @@ $(CC) -o $@ $(SOURCES) \
 #
 ######
 
-install:: \
-cp -fp tempacc ./../../bin/
+install:: ; cp -fp tempacc ./../../bin/
 
 
 ###### end of [Makefile_build] ######
