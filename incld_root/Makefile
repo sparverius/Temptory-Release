@@ -1,14 +1,5 @@
-######
-#
-# A simple Makefile
-#
-######
 
-MAKE=make
+all:: ; make -C utils/tempacc all
 
-######
-
-all:: ; $(MAKE) -C utils/atscc build install
-
-cleanall:: ; rm -f bin/patscc
+cleanall:: ; rm -f bin/tempacc
 

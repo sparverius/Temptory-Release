@@ -9,14 +9,19 @@ MAKE=make
 
 ######
 
+all:: build
+all:: install
+
+######
+
 SOURCES=\
 tempacc_dats.c \
 atscc_main_dats.c \
 atscc_print_dats.c \
 
 ######
-#
-all:: \
+
+build:: \
 tempacc
 tempacc : ; \
 $(CC) -o $@ $(SOURCES) \
@@ -24,5 +29,9 @@ $(CC) -o $@ $(SOURCES) \
   -I${PATSHOME} -I${PATSHOME}/ccomp/runtime
 #
 ######
+
+install:: \
+cp -fp tempacc ./../../bin/
+
 
 ###### end of [Makefile_build] ######
