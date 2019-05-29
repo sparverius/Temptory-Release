@@ -10,21 +10,38 @@ include share.mk
 
 ######
 
-all:: make_dirs 
+all:: make_tempacc
 all:: copyfiles
 all:: tarzvcf
 
 ######
 
-SRC=$(ATSDIST)-gmpknd-$(RELEASE_VERSION)
+SRC=$(ATSDIST)-intknd-$(RELEASE_VERSION)
 DST=$(ATSDIST)-include-$(RELEASE_VERSION)
 
 ######
 
-make_dirs:: ; $(MKDIRP) $(DST)/ccomp/runtime/
-make_dirs:: ; $(MKDIRP) $(DST)/libats/CATS/
-make_dirs:: ; $(MKDIRP) $(DST)/libats/libc/CATS/
-make_dirs:: ; $(MKDIRP) $(DST)/libats/temp/CATS/
+BASE=incld_root
+TMPACCDIR=tmpacc_build
+
+######
+
+make_tempacc::; $(RMRF) $(DST)
+make_tempacc::; $(MKDIR) $(DST)
+
+make_tempacc::; $(CPRFP) $(SRC)/utils/tempacc/ $(TMPACCDIR)
+make_tempacc::; $(MAKE) -C $(TMPACCDIR)
+make_tempacc::; $(MAKE) -C $(TMPACCDIR) build
+
+make_tempacc::; $(CPRFP) $(BASE)/* $(DST)
+make_tempacc::; $(CPRFP) $(TMPACCDIR)/BUILD/*.c $(DST)/utils/tempacc/
+
+# for future reference
+make_tempacc::; $(CPRFP) $(TMPACCDIR)/DATS/ $(DST)/utils/tempacc/
+make_tempacc::; $(CPRFP) $(TMPACCDIR)/SATS/ $(DST)/utils/tempacc/
+
+make_tempacc::; $(RMRF) $(TMPACCDIR)
+
 
 ######
 
@@ -40,3 +57,5 @@ tarzvcf:: ; $(TARZVCF) $(DST).tgz $(DST)
 
 ######
 
+cleanall:: ; $(RMRF) $(TMPACCDIR)
+cleanall:: ; $(RMRF) $(DST)
