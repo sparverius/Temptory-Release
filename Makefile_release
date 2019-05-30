@@ -110,7 +110,8 @@ generate_config:: ; @echo "Generating configure file"
 generate_config:: ; (cd $(BUILD_DIR) && sh ./autogen.sh && $(RMRF) autom4te.cache)
 
 cleanup_rel_dir:: ; @echo "Cleaning up realease directory"
-cleanup_rel_dir:: ; $(MKBDIR) clean
+cleanup_rel_dir:: ; $(MKBDIR) cleanall
+cleanup_rel_dir:: ; $(RMRF) $(BUILD_DIR)/travis-ci
 
 ######
 
