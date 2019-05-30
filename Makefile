@@ -8,42 +8,27 @@ include share.mk
 
 ######
 
-MAKEREL=Makefile_release
-MAKEINC=Makefile_include
+MAKEBUILD=Makefile_build
 
 ######
 
-all:: intkind
-all:: gmpkind
-all:: include
-all:: test
-all:: clean
+all:: make_build
 
 ######
 
-intkind:: ; $(MAKE) -f $(MAKEREL) C3NSTRINTKND=intknd all
-gmpkind:: ; $(MAKE) -f $(MAKEREL) C3NSTRINTKND=gmpknd all
+make_build:: ; $(MAKE) -f $(MAKEBUILD)
 
 ######
 
-include:: ; $(MAKE) -f $(MAKEINC) all
+# Note: the following are automatically called
+#       by Makefile_build
 
 ######
 
-test:: ; (cd $(DIR_INT) && ./configure)
-test:: ; (cd $(DIR_GMP) && ./configure)
-
-test:: ; time $(MAKE) -C $(DIR_INT) all
-test:: ; time $(MAKE) -C $(DIR_GMP) all
-test:: ; time $(MAKE) -C $(DIR_CLU) all
+clean::; $(MAKE) -f $(MAKEBUILD) clean
 
 ######
 
-clean:: ; $(RMRF) $(DIR_INT) $(DIR_GMP) $(DIR_CLU)
-
-######
-
-cleanall::; $(RMF) *~
-cleanall::; $(RMRF) ATS-Temptory-*
+cleanall::; $(MAKE) -f $(MAKEBUILD) cleanall
 
 ######

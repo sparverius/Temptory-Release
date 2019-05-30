@@ -111,6 +111,8 @@ generate_config:: ; (cd $(BUILD_DIR) && sh ./autogen.sh && $(RMRF) autom4te.cach
 
 cleanup_rel_dir:: ; @echo "Cleaning up realease directory"
 cleanup_rel_dir:: ; $(MKBDIR) clean
+cleanup_rel_dir:: ; $(MKBDIR)/srcgen clean
+cleanup_rel_dir:: ; $(RMRF) $(BUILD_DIR)/travis-ci
 
 ######
 
