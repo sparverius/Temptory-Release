@@ -17,6 +17,18 @@ RELBRANCH=tags/v$(RELEASE_VERSION)
 
 ######
 
+# 
+# These are the expected directory names
+# if the C3NSTRINTKND gets changed
+# these should be changed also
+# 
+
+DIR_INT=$(ATSDIST)-intknd-$(RELEASE_VERSION)
+DIR_GMP=$(ATSDIST)-gmpknd-$(RELEASE_VERSION)
+DIR_CLU=$(ATSDIST)-include-$(RELEASE_VERSION)
+
+######
+
 CAT=cat
 
 CHKOUT=git checkout -b
