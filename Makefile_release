@@ -68,7 +68,7 @@ all:: tarzvcf_release
 #
 ######
 
-BUILD_DIR=$(ATSDIST)-$(C3NSTRINTKND)-$(RELEASE_VERSION)
+BUILD_DIR=$(ATSDIST)-$(INTKIND)-$(RELEASE_VERSION)
 
 ######
 
@@ -111,6 +111,7 @@ generate_config:: ; (cd $(BUILD_DIR) && sh ./autogen.sh && $(RMRF) autom4te.cach
 
 cleanup_rel_dir:: ; @echo "Cleaning up realease directory"
 cleanup_rel_dir:: ; $(MKBDIR) cleanall
+cleanup_rel_dir:: ; $(RMRF) $(BUILD_DIR)/.git
 cleanup_rel_dir:: ; $(RMRF) $(BUILD_DIR)/travis-ci
 
 ######
