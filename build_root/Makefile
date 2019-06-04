@@ -90,6 +90,11 @@ $(MAKE) -C utils/tempacc copy build clean
 bin_tempacc: utl_tempacc ; \
 $(MVF) utils/tempacc/BUILD/tempacc bin/tempacc
 
+utl_mytempacc: ; \
+$(MAKE) -C utils/mytempacc copy build clean
+bin_mytempacc: utl_mytempacc ; \
+$(MVF) utils/mytempacc/BUILD/mytempacc bin/mytempacc
+
 ######
 #
 src2_libatsopt: ; \
