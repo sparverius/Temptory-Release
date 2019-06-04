@@ -16,7 +16,7 @@ MAKEINC=Makefile_include
 all:: intkind
 all:: gmpkind
 all:: include
-all:: test
+# all:: test
 all:: clean
 
 ######
