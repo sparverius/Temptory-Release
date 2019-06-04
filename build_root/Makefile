@@ -30,7 +30,7 @@ all:: bin2_tempopt
 all:: lib2_libatsopt
 #
 all:: bin_tempacc
-# all:: bin_myatscc
+all:: bin_mytempacc
 #
 all:: ccomp/atslib/lib/libatslib.a
 #
@@ -52,9 +52,9 @@ configure ; \
 #
 ######
 #
-C3NSTRINTKND=gmpknd
+# C3NSTRINTKND=gmpknd
 #
-#C3NSTRINTKND=intknd
+# C3NSTRINTKND=intknd
 #
 ######
 #
@@ -88,7 +88,12 @@ bin2_tempopt: src2_tempopt ; $(CPF) srcgen/CBOOT/tempopt bin/tempopt
 utl_tempacc: ; \
 $(MAKE) -C utils/tempacc copy build clean
 bin_tempacc: utl_tempacc ; \
-$(MVF) utils/tempacc/BUILD/tempacc bin/tempacc
+$(CPF) utils/tempacc/BUILD/tempacc bin/tempacc
+
+utl_mytempacc: ; \
+$(MAKE) -C utils/mytempacc copy build clean
+bin_mytempacc: utl_mytempacc ; \
+$(CPF) utils/mytempacc/BUILD/mytempacc bin/mytempacc
 
 ######
 #
@@ -161,16 +166,10 @@ install_files_00: install_dirs ; \
 
 install_files_10: bin/tempacc ; \
   $(INSTALL) -m755 $< $(TEMPTORYLIBHOME)/bin/tempacc && echo $<
-# install_files_11: bin/myatscc ; \
-#   $(INSTALL) -m755 $< $(TEMPTORYLIBHOME)/bin/myatscc && echo $<
+install_files_11: bin/mytempacc ; \
+  $(INSTALL) -m755 $< $(TEMPTORYLIBHOME)/bin/mytempacc && echo $<
 install_files_20: bin/tempopt ; \
   $(INSTALL) -m755 $< $(TEMPTORYLIBHOME)/bin/tempopt && echo $<
-# install_files_30: bin/tempacc_env.sh ; \
-#   $(INSTALL) -m755 $< $(bindir2)/tempacc && echo $<
-# install_files_31: bin/myatscc_env.sh ; \
-#   $(INSTALL) -m755 $< $(bindir2)/myatscc && echo $<
-# install_files_40: bin/tempopt_env.sh ; \
-#   $(INSTALL) -m755 $< $(bindir2)/tempopt && echo $<
 
 install_files_50: ; \
   for x in \
@@ -199,7 +198,7 @@ uninstall:: uninstall_bin
 uninstall:: uninstall_home
 #
 uninstall_bin:: ; $(RMF) $(bindir2)/tempacc
-# uninstall_bin:: ; $(RMF) $(bindir2)/myatscc
+uninstall_bin:: ; $(RMF) $(bindir2)/mytempacc
 uninstall_bin:: ; $(RMF) $(bindir2)/tempopt
 uninstall_home:: ; $(RMRF) $(TEMPTORYLIBHOME)
 #
@@ -222,11 +221,8 @@ cleanall:: ; $(RMF) config.status
 cleanall:: ; $(RMRF) autom4te.cache
 
 cleanall:: ; $(RMF) bin/tempacc
-# cleanall:: ; $(RMF) bin/myatscc
+cleanall:: ; $(RMF) bin/mytempacc
 cleanall:: ; $(RMF) bin/tempopt
-cleanall:: ; $(RMF) bin/tempacc_env.sh
-# cleanall:: ; $(RMF) bin/myatscc_env.sh
-cleanall:: ; $(RMF) bin/tempopt_env.sh
 
 cleanall:: ; $(RMF) ccomp/atslib/lib/*
 cleanall:: ; $(RMF) ccomp/atslib/lib64/*

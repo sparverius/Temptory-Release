@@ -16,7 +16,7 @@ all:: tarzvcf
 
 ######
 
-SRC=$(ATSDIST)-intknd-$(RELEASE_VERSION)
+SRC=$(ATSDIST)-int-$(RELEASE_VERSION)
 DST=$(ATSDIST)-include-$(RELEASE_VERSION)
 
 ######
