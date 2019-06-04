@@ -88,12 +88,12 @@ bin2_tempopt: src2_tempopt ; $(CPF) srcgen/CBOOT/tempopt bin/tempopt
 utl_tempacc: ; \
 $(MAKE) -C utils/tempacc copy build clean
 bin_tempacc: utl_tempacc ; \
-$(MVF) utils/tempacc/BUILD/tempacc bin/tempacc
+$(CPF) utils/tempacc/BUILD/tempacc bin/tempacc
 
 utl_mytempacc: ; \
 $(MAKE) -C utils/mytempacc copy build clean
 bin_mytempacc: utl_mytempacc ; \
-$(MVF) utils/mytempacc/BUILD/mytempacc bin/mytempacc
+$(CPF) utils/mytempacc/BUILD/mytempacc bin/mytempacc
 
 ######
 #

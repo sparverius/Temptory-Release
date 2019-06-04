@@ -16,8 +16,8 @@ all:: tarzvcf
 
 ######
 
-SRC=$(DIR_INT)
-DST=$(DIR_CLU)
+SRC=$(ATSDIST)-int-$(RELEASE_VERSION)
+DST=$(ATSDIST)-include-$(RELEASE_VERSION)
 
 ######
 
