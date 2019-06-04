@@ -30,12 +30,12 @@ include:: ; $(MAKE) -f $(MAKEINC) all
 
 ######
 
-test:: ; (cd $(DIR_INT) && ./configure)
-test:: ; (cd $(DIR_GMP) && ./configure)
+# test:: ; (cd $(DIR_INT) && ./configure)
+# test:: ; (cd $(DIR_GMP) && ./configure)
 
-test:: ; time $(MAKE) -C $(DIR_INT) all
-test:: ; time $(MAKE) -C $(DIR_GMP) all
-test:: ; time $(MAKE) -C $(DIR_CLU) all
+# test:: ; time $(MAKE) -C $(DIR_INT) all
+# test:: ; time $(MAKE) -C $(DIR_GMP) all
+# test:: ; time $(MAKE) -C $(DIR_CLU) all
 
 ######
 
