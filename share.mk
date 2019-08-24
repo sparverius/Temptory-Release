@@ -8,6 +8,7 @@ RELEASE_VERSION=$(shell cat VERSION)
 ######
 
 ATSDIST=Temptory-Upstream
+TMPHOME=${HOME}/ATSTMP
 
 ######
 

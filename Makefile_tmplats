@@ -1,0 +1,29 @@
+
+#
+# A simple Makefile
+# for packing ATS-includes
+#
+
+######
+
+include share.mk
+
+######
+
+all:: make_tmplats
+
+######
+
+SRC=$(ATSDIST)-int-$(RELEASE_VERSION)
+
+######
+
+export TEMPTORY=$(TMPHOME)
+export PATH := ${TEMPTORY}/bin:${PATH}
+
+make_tmplats::; $(CPRFP) $(SRC) ${TEMPTORY}
+make_tmplats::; (cd ${TEMPTORY} && ./configure)
+make_tmplats::; $(MAKE) -C ${TEMPTORY}
+
+######
+

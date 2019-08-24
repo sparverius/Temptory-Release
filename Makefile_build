@@ -9,12 +9,14 @@ include share.mk
 ######
 
 MAKEREL=Makefile_release
+MAKETMP=Makefile_tmplats
 MAKEINC=Makefile_include
 
 ######
 
 all:: intkind
 all:: gmpkind
+all:: tmplats
 all:: include
 # all:: test
 all:: clean
@@ -23,6 +25,10 @@ all:: clean
 
 intkind:: ; $(MAKE) -f $(MAKEREL) C3NSTRINTKND=intknd all
 gmpkind:: ; $(MAKE) -f $(MAKEREL) C3NSTRINTKND=gmpknd all
+
+######
+
+tmplats:: ; $(MAKE) -f $(MAKETMP) all
 
 ######
 
