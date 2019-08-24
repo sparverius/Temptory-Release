@@ -13,8 +13,7 @@ ATSDIST=Temptory-Upstream
 
 REPO=https://github.com/sparverius/ATS-Temptory.git
 
-RELBRANCH=upstream
-TAGBRANCH=tags/v$(RELEASE_VERSION)
+RELBRANCH=tags/v$(RELEASE_VERSION)
 
 ######
 

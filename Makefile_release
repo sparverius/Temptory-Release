@@ -92,8 +92,6 @@ clonerepository:: ; $(CLONE) $(REPO) $(BUILD_DIR)
 
 checkoutrelease:: ; @echo "$(CHKOUT) $(RELBRANCH)"
 checkoutrelease:: ; (cd $(BUILD_DIR) && $(CHKOUT) $(RELBRANCH))
-checkoutrelease:: ; @echo "$(CHKOUT) $(TAGBRANCH)"
-checkoutrelease:: ; (cd $(BUILD_DIR) && $(CHKOUT) $(TAGBRANCH))
 
 bootstrap_build:: ; @echo "Bootstraping build"
 bootstrap_build:: ; $(CPRF) build_root/* $(BUILD_DIR)
