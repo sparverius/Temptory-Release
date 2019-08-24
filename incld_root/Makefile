@@ -1,5 +1,5 @@
 
-export TEMPTORY=$(HOME)/$(TMPHOME)
+export TEMPTORY=$(TMPHOME)
 
 all:: ; make -C utils/tempacc all
 
