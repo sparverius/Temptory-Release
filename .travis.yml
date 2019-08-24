@@ -32,7 +32,7 @@ deploy:
     secure: abwiLI+WHwwEHmENB+wpdz0GYl3dD1Dk0OCSYBdZyZe91S9Y15ptB5J1LMhLkhO0iF97y8sNLGp0BTi0hAww/AKot3J7rJydR/0MUZNAn1T7KWCwXifImk0BgX9QP20ARBWW8BlkAcPBUcdncJEQjWa8UJyV3UhgF95ADRN1bMof7jRzhVTrWL/2oUBQ/buU4etGONXXFlt9PImk4aYEA/fWr/jXggHDXVjw+YkJLG00Hz7cT9C3wopJVp40B64XLz4G2mL8bIh942YH8lByhrk9TpSGWqou0Y/fLR3+/HGG6wlUZi7xatPciPRoEj1P1mNkyZQMUuDHEj+h/inVij679OI5iPSh1uzT3AWeFIscX0r72xQcl17VoIEsJHzMjqQhdJKGvTzy0+D8DbDVl8xIc8GcVN/Zdmx2PpYO5N5/ylUZa5pNrYADiohxNsIEBvztZKC2/Vx60Gd1MYQuaA5ecZS6Bf3fr8ViRF6VL/hj/o4Ol9TtVftH3UDS+eCmj2T1VByaha8Vzi4kdbhB25d43t5jm78yXc2rbp8XTzuCl+X4zc57YRRfoVD8WvkwRx6/ri1dXOo/RhBvrm/RqlqB6EtO1kHASF2uTYFtUhySjiNLMsWOKMMbljItQ6KiGiVKmGk92HzOEi3SqPn+d6bJoyiYTW7ConJN0ynKN1Q=
   file: Temptory-Upstream*.tgz
   file_glob: true
-  name: Temptory-Upstream-0.0.0
+  name: Temptory-Upstream-0.0.1
   prerelease: true
   skip_cleanup: true
   on:
