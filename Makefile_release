@@ -116,7 +116,9 @@ cleanup_rel_dir:: ; $(RMRF) $(BUILD_DIR)/travis-ci
 
 ######
 
-tarzvcf_release:: ; $(TARZVCF) $(BUILD_DIR).tgz $(BUILD_DIR)/.
+tarzvcf_release:: ; mv $(BUILD_DIR) ats-temptory
+tarzvcf_release:: ; $(TARZVCF) $(BUILD_DIR).tgz ats-temptory/.
+tarzvcf_release:: ; mv ats-temptory $(BUILD_DIR) 
 
 ######
 
