@@ -1,3 +1,17 @@
+# [0.0.2](https://github.com/sparverius/Temptory-Release/releases/tag/v0.1.0)
+ATS-Temptory:[3613eb8](https://github.com/githwxi/ATS-Temptory/commit/3613eb8b03c53d7f591f7b7eec627b346d9b62c1)
+
+* Generic template additionsn
+	* gbas : for generics
+	* gnum : for numbers
+	* gord : for ordering
+	* added DATS/gseq_sint.dats
+* Refactored tempacc
+	* tempacc can now be compiled via tempacc
+* fixes SATS/unsafe.sats :: list0_vt2t
+	* converted to polymorphic function instead of template
+* added DATS/string.dats :: string0_ifoldleft
+
 # [0.0.1](https://github.com/sparverius/Temptory-Release/releases/tag/v0.1.0)
 ATS-Temptory:[47bb03a](https://github.com/githwxi/ATS-Temptory/commit/47bb03a110e58068cd43741799ffb5ed7ad11f63)
 
