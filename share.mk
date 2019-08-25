@@ -12,7 +12,7 @@ TMPHOME=${HOME}/ATSTMP
 
 ######
 
-REPO=https://github.com/sparverius/ATS-Temptory.git
+REPO=https://github.com/githwxi/ATS-Temptory.git
 
 RELBRANCH=tags/v$(RELEASE_VERSION)
 
