@@ -1,7 +1,7 @@
 # [0.0.2](https://github.com/sparverius/Temptory-Release/releases/tag/v0.1.0)
 ATS-Temptory:[3613eb8](https://github.com/githwxi/ATS-Temptory/commit/3613eb8b03c53d7f591f7b7eec627b346d9b62c1)
 
-* Generic template additionsn
+* Generic template additions
 	* gbas : for generics
 	* gnum : for numbers
 	* gord : for ordering
