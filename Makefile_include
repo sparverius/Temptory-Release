@@ -21,13 +21,19 @@ DST=$(ATSDIST)-include-$(RELEASE_VERSION)
 ######
 
 BASE=incld_root
-TMPACCDIR=tmpacc_build
 
 ######
 
 make_tempacc::; $(RMRF) $(DST)
 
 make_tempacc::; $(CPRFP) $(BASE) $(DST)
+
+make_tempacc::; $(MAKE) -C $(TMPHOME)/utils/tempacc copy
+
+export TEMPTORY=$(TMPHOME)
+
+make_tempacc::; $(MAKE) -C $(TMPHOME)/utils/tempacc/BUILD -f ../Makefile_build TEMPTORYQ=$(TMPHOME)
+
 make_tempacc::; $(CPRFP) $(TMPHOME)/utils/tempacc/BUILD/*.c $(DST)/utils/tempacc/
 
 # for future reference
