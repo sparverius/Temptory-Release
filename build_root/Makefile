@@ -32,7 +32,7 @@ all:: lib2_libatsopt
 all:: bin_tempacc
 all:: bin_mytempacc
 #
-all:: ccomp/atslib/lib/libatslib.a
+# all:: ccomp/atslib/lib/libatslib.a
 #
 ######
 
