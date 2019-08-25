@@ -7,7 +7,7 @@ ATS-Temptory:[3613eb8](https://github.com/githwxi/ATS-Temptory/commit/3613eb8b03
 	* gord : for ordering
 	* added DATS/gseq_sint.dats
 * Refactored tempacc
-	* tempacc can now be compiled via tempacc
+	* tempacc can now be compiled via tempopt
 * fixes SATS/unsafe.sats :: list0_vt2t
 	* converted to polymorphic function instead of template
 * added DATS/string.dats :: string0_ifoldleft
