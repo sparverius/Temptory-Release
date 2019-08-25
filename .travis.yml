@@ -13,6 +13,7 @@ before_install:
 - export CLANG=clang
 - export ATSHOME=${HOME}/ATS1
 - export ATSHOMERELOC=ATS-0.2.12
+- export PATH=${PATH}:${ATSHOME}/bin
 - export PATSHOME=${HOME}/ATS2
 - export PATH=${PATH}:${PATSHOME}/bin
 - export TEMPTORYBUILD=${TRAVIS_BUILD_DIR}
@@ -32,7 +33,7 @@ deploy:
     secure: EmWGcC/NphCqjd75OWvJNifaDaglAgpJE4xZqsPPQ55WAHcvD+bKfq0D09s8Popth6zDlMYctaQKIE07vgFHaXizGRF3xmm2raQ+i+/7ClEAcF8R85OZlWoi/MfzzAe4AzHoj6i/EnOKWE/2EvKbFYFEei4pDo3qjdwsVAXdsqNyY7cKcOm+pj35W6KFRUG07WGz2lOuok6dFlZJN5A7wX3zQic+cLiClYfTxchxh6TBswbC5fdsFfsqufDJnpUMTRyDb7GYD3bul2Q8L+qlZd5IVqFxZ2plrk0FaIup/p9O1yIrtCDLBv3O9pTVZgzWXQQiIB3k3KamyS4+F3AKS1goXfLfsCRkVKcJRyUWqVTsh385FbLaAJiUwH5weAUwKwPI/WmS1H24k/ohPGw6uki9LETI9xUYQyM8S++QqoozotfKXHgSIHNWKSZXBuC3OdjSpQlhKyuSLAW1XRFmjc+WYozfMjSS61BhswyaKTMNfK+d3f9ElHwvkUvT7VgTpdZZtqJPh3B+1YpFSp9njQ+EO3TcJFrQ66+VGSc4Qt0nSB1huY2VD+YtBOQu7BSu20/Z2RQ58TiQfLgRuAKMKxMauCeegJl7GWGNUJzMvmeyRfJQra8pJfqNAcHRG7jumdg8RJ61kJwhPu8R6eQptB5WfgCAPnwHoXOVLRDn6xs=
   file: ATS-Temptory*.tgz
   file_glob: true
-  name: ATS-Temptory-0.0.0
+  name: ATS-Temptory-0.0.2
   prerelease: true
   skip_cleanup: true
   on:
